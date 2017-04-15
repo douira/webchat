@@ -1,2 +1,2 @@
 # webchat
-a simple chat in a browser built on express and node.js
+a simple web chat built on express and node.js
