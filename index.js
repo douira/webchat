@@ -1,3 +1,4 @@
+/*jshint asi: false, esnext: true, node: true*/
 var express = require('express');
 var app = express();
 
