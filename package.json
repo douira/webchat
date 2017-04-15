@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/douira/webchat"
+    "url": "git+https://github.com/douira/webchat.git"
   },
   "keywords": [
     "chat",
@@ -17,5 +17,12 @@
     "webchat"
   ],
   "author": "douira",
-  "license": "none"
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/douira/webchat/issues"
+  },
+  "homepage": "https://github.com/douira/webchat#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
 }
