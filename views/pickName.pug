@@ -1,4 +1,14 @@
 extends layout
 
 block content
-  p pick name interface
+  form(action="/" method="post")
+    .form-group.text-center
+      label(for="nameField") Enter your preferred username:
+      input(type="text" placeholder="username").form-control.form-control-lg#nameField
+      .form-control-feedback#success-feedback.hide-element Valid username!
+      .form-control-feedback#warning-feedback.hide-element Invalid username, change the formatting
+      .form-control-feedback#error-feedback.hide-element Username already in use! Try another?
+    button(type="submit" value="Submit").btn.btn-primary Submit
+
+block scripts
+  script(src="/js/pick.js")

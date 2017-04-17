@@ -1,10 +1,16 @@
 body {
   padding: 2rem;
-  background-color: #fcfcfc !important;
+  padding-bottom: 0.5rem;
+  background-color: #f9f9f9 !important;
 }
 
 #chat-box-frame {
+  height: auto;
   border: solid 2px lightgrey;
+}
+
+.bg-white {
+  background-color: white;
 }
 
 #input-box-frame {
@@ -21,6 +27,15 @@ body {
 }
 .right-text {
   float: right;
+}
+
+.hide-element {
+  display: none;
+}
+
+#nameField {
+  max-width: 25rem;
+  margin: auto;
 }
 
 .octicon {

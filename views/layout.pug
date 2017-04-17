@@ -20,12 +20,16 @@ html(lang="en")
     link(rel="stylesheet" href="/stylesheets/style.css")
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous")
   body.text-center
-    h1.text-muted webchat
-    block content
-    small.text-muted.pt-1
-      br
-      | on
-      a(href="https://github.com/douira/webchat") GitHub
-      |  | by
-      a(href="https://twitter.com/douira100") douira
+    header
+      h1.text-muted.mb-3 webchat
+    main
+      block content
+    footer
+      small.text-muted.pt-1
+        br
+        | on&nbsp
+        a(href="https://github.com/douira/webchat") GitHub
+        |  | by&nbsp
+        a(href="https://twitter.com/douira100") douira
+    block scripts
 

@@ -1,5 +1,6 @@
 {
   "asi": false,
   "esnext": true,
-  "node": true
+  "node": true,
+  "browser": true
 }

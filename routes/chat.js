@@ -9,8 +9,8 @@ const messages = Array(40).fill(0).map(() => {
   const nameLength = Math.floor(Math.random() * 4) + 5;
   const namePos = Math.floor(Math.random() * (text.length - nameLength));
   return {
-    text: text.substring(start, end),
-    author: text.substr(namePos, nameLength),
+    text: text.substring(start, end).trim(),
+    author: text.substr(namePos, nameLength).trim(),
     time: new Date(Math.round(Math.random() * Date.now()))
   };
 });
