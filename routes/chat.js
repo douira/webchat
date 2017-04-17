@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const usernameValidator = require("../public/js/usernameValidator");
 
 const exp = module.exports = {
   router: router
@@ -21,7 +22,23 @@ const messages = Array(40).fill(0).map(() => {
 
 router.get("/", function(req, res, next) {
   res.render("chat", {
-    title: "webchat",
-    messages: messages
+    messages: exp.db.messages
   });
+});
+
+router.post("/", function(req, res, next) {
+  const userName = req.body.name;
+  const validationResponse = usernameValidator(userName);
+  if (validationResponse) {
+    res.render("chat", {
+      messages: exp.db.messages,
+      errorMessage: "user name erro: " + validationResponse
+    });
+  } else {
+    res.render("chat", {
+      title: "webchat @" + userName,
+      messages: exp.db.messages,
+      userName: userName
+    });
+  }
 });

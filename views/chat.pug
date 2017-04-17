@@ -1,6 +1,9 @@
 extends layout
 
 block content
+  if errorMessage
+    .alert.alert-danger(role="alert")
+      h1= "Error: " + errorMessage
   .rounded#chat-box-frame.bg-white
     .pre-scrollable
       if someMessagesHidden || true
