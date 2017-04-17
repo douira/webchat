@@ -5,8 +5,6 @@ const exports = module.exports = {
   router: router
 };
 
-router.get("/", function(req, res, next) {
-  res.render("about", {
-    title: "About"
-  });
+router.get("/:name", function(req, res, next) {
+  res.send(req.params.name + " " + router.db.users[0]);
 });

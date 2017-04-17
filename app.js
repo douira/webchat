@@ -10,6 +10,7 @@ const bodyParser = require("body-parser");
 const chat = require("./routes/chat");
 const about = require("./routes/about");
 const pickName = require("./routes/pickName");
+const validateUsername = require("./routes/validateUsername");
 
 const app = express();
 
@@ -25,9 +26,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", chat);
-app.use("/pick", pickName);
-app.use("/about", about);
+app.use("/", chat.router);
+app.use("/pick", pickName.router);
+app.use("/about", about.router);
+app.use("/validateusername", validateUsername.router);
+
+//database for use in routers that need it
+const db = {
+  users: [],
+  messages: []
+};
+validateUsername.db = db;
+chat.db = db;
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
