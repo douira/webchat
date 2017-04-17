@@ -33,7 +33,7 @@ body {
   display: none;
 }
 
-#nameField {
+#name-field {
   max-width: 25rem;
   margin: auto;
 }
