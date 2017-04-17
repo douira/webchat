@@ -1,3 +1,16 @@
+mixin octicon(name, size)
+  img.octicon(src="icons/octicons/" + name + ".svg" style="height: " + size + "px")
+
+mixin spacer-br(height)
+  div(style="height:" + height + "px"): br
+
+mixin grey-ellipsis
+  .grey-out(style="padding: 10px; line-height: 0")
+    - let n = 3;
+    while n--
+      +spacer-br(1)
+      +octicon("primitive-dot", 11)
+
 doctype html
 html(lang="en")
   head
@@ -8,5 +21,11 @@ html(lang="en")
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous")
   body.text-center
     h1.text-muted webchat
-    = number
     block content
+    small.text-muted.pt-1
+      br
+      | on
+      a(href="https://github.com/douira/webchat") GitHub
+      |  | by
+      a(href="https://twitter.com/douira100") douira
+

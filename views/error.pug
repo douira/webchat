@@ -5,7 +5,7 @@ block content
     h1
       = error.status
       | :
-      strong= message
+      strong= error.message
       br
     | :-(
     pre.small.text-left #{error.stack}

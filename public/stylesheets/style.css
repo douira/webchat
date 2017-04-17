@@ -1,7 +1,36 @@
 body {
-  padding: 30px;
+  padding: 2rem;
+  background-color: #fcfcfc !important;
 }
 
-#chat-box {
-  color: aqua;
+#chat-box-frame {
+  border: solid 2px lightgrey;
+}
+
+#input-box-frame {
+  border-top: solid 2px lightgrey;
+  height: 4rem;
+}
+
+.message {
+  border-bottom: solid 1px lightgrey;
+}
+
+.left-text {
+  float: left;
+}
+.right-text {
+  float: right;
+}
+
+.octicon {
+  display: inline-block;
+  vertical-align: text-top;
+  fill: lightgrey;
+}
+
+.grey-out {
+  opacity: 0.4;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
 }

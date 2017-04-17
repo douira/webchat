@@ -1,7 +1,20 @@
 extends layout
 
 block content
-  .pre-scrollable#chat-box
-    - let i = 0;
-    while i++ < 100
-      p things...
+  .rounded#chat-box-frame
+    .pre-scrollable
+      if someMessagesHidden || true
+        .message: +grey-ellipsis
+      each message, index in messages
+        .message.px-3.py-2(style=index < messages.length - 1 ? undefined : "border: none")
+          span.left-text: strong= message.author
+          span.right-text: small.text-muted= message.time
+          br
+          p.text-left.m-0= message.text
+    if userName
+      #input-box-frame
+    else
+      #input-box-frame.bg-primary.text-white.d-flex.align-items-center.justify-content-center
+        .p-2
+          u: a.text-white.font-weight-bold(href="/pick") Pick a name
+          |  to join the conversation!
