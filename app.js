@@ -7,6 +7,9 @@ const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+
 const chat = require("./routes/chat");
 const about = require("./routes/about");
 const pickName = require("./routes/pickName");
@@ -18,7 +21,18 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
-// uncomment after placing your favicon in /public
+//sessions
+app.use(session({
+  store: new FileStore(),
+  secret: "keyboard cat",
+  resave: true,
+  saveUninitialized: true,
+  rolling: true,
+  name: "webchat.sid",
+  maxAge: 3600000 //1 hour
+}));
+
+//uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -31,7 +45,7 @@ app.use("/pick", pickName.router);
 app.use("/about", about.router);
 app.use("/validateusername", validateUsername.router);
 
-//database for use in routers that need it
+//database for use in route js' that need it
 const db = {
   users: [],
   messages: []
