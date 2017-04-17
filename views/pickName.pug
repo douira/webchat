@@ -2,13 +2,18 @@ extends layout
 
 block content
   form(action="/" method="post")
-    .form-group.text-center
+    .form-group.text-center#username-form-group
       label(for="nameField") Enter your preferred username:
       input(type="text" placeholder="username").form-control.form-control-lg#nameField
       .form-control-feedback#success-feedback.hide-element Valid username!
       .form-control-feedback#warning-feedback.hide-element Invalid username, change the formatting
-      .form-control-feedback#error-feedback.hide-element Username already in use! Try another?
+      .form-control-feedback#danger-feedback.hide-element Username already in use! Try another?
     button(type="submit" value="Submit").btn.btn-primary Submit
 
 block scripts
+  script(
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"
+  )
   script(src="/js/pick.js")
