@@ -51,13 +51,11 @@ function checkInputField(event) {
     updateDisplay();
     setCheckSchedulingStatus(false);
   } else { //name is ok, we need to ask the server now
-    //we're waiting for a server response now or are going to send server request in a while
-    setCheckSchedulingStatus(true);
-
     //get current time and check if we shoudl aks the server now or wait
     var currentTime = Date.now();
     if (currentTime - lastChecked > minTimeBetween) {
-
+      //waiting for server now
+      setCheckSchedulingStatus(true);
 
       //now is the last time we checked because we're doing it right now
       lastChecked = currentTime;
@@ -79,6 +77,9 @@ function checkInputField(event) {
         updateDisplay();
       });
     } else if (! checkIsScheduled) {
+      //waiting to send request to server
+      setCheckSchedulingStatus(true);
+
       //set a timer to check again in the remaining time we have to wait
       window.setTimeout(function() {
         checkInputField(event);
