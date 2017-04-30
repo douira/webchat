@@ -1,16 +1,15 @@
 extends layout
 
 block content
-  form(action="/" method="post")
-    .form-group.text-center#username-form-group
-      label(for="nameField") Enter your preferred username:
-      input(type="text" placeholder="username").form-control.form-control-lg#name-field
-      .form-control-feedback#success-feedback.hide-element Valid username!
-      .form-control-feedback#warning-feedback.hide-element
-        span Invalid username:&nbsp
-        span#warning-reason
-      .form-control-feedback#danger-feedback.hide-element Username already in use! Try another?
-    button(type="submit" value="Submit" disabled).btn.btn-primary#submit-button Submit
+  .form-group.text-center#username-form-group
+    label(for="nameField") Enter your preferred username:
+    input(type="text" placeholder="username").form-control.form-control-lg#name-field
+    .form-control-feedback#success-feedback.hide-element Valid username!
+    .form-control-feedback#warning-feedback.hide-element
+      span Invalid username:&nbsp
+      span#warning-reason
+    .form-control-feedback#danger-feedback.hide-element Username already in use or invalid! Try another?
+  button(disabled).btn.btn-primary#submit-button Submit
 
 block scripts
   script(
