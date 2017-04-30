@@ -1,5 +1,6 @@
 extends layout
 
+//-pick name dialog
 block content
   .form-group.text-center#username-form-group
     label(for="nameField") Enter your preferred username:
@@ -11,11 +12,15 @@ block content
     .form-control-feedback#danger-feedback.hide-element Username already in use or invalid! Try another?
   button(disabled).btn.btn-primary#submit-button Submit
 
+//- scripts needed to make pick dialog work
 block scripts
+  //-external jquery for ajax post and get requests
   script(
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"
   )
+
+  //-validation and management code
   script(src="/js/pick.js")
   script(src="/js/usernameValidator.js")

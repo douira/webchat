@@ -1,10 +1,15 @@
 extends layout
 
+//-main page chat box
 block content
+  //-user name error, only actually pops up if client send name registe request without checking it with the server first
   if errorMessage
     .alert.alert-danger(role="alert")
       h1= "Error: " + errorMessage
+
+  //-main chat box
   .rounded#chat-box-frame.bg-white
+    //-chat messages
     .pre-scrollable
       if someMessagesHidden || true
         .message: +grey-ellipsis
@@ -14,9 +19,13 @@ block content
           span.right-text: small.text-muted= message.time
           br
           p.text-left.m-0= message.text
+
+    //-message input field or pick a name text depending on wether or not the user has a name
     if userName
+      //-message input block
       #input-box-frame
     else
+      //-pick a name block
       #input-box-frame.bg-primary.text-white.d-flex.align-items-center.justify-content-center
         .p-2
           u: a.text-white.font-weight-bold(href="/pick") Pick a name

@@ -1,9 +1,12 @@
+//-generates the specified octicon
 mixin octicon(name, size)
   img.octicon(src="icons/octicons/" + name + ".svg" style="height: " + size + "px")
 
+//-generates a spacer br element
 mixin spacer-br(height)
   div(style="height:" + height + "px"): br
 
+//-uses several ociton dots to make an ellipsis symbol
 mixin grey-ellipsis
   .grey-out(style="padding: 10px; line-height: 0")
     - let n = 3;
@@ -14,22 +17,35 @@ mixin grey-ellipsis
 doctype html
 html(lang="en")
   head
+    //-charset setup for exotic chars
     meta(charset="utf-8")
+
+    //-setup fr bootstrap responsive design
     meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+
+    //-use default title if none given
     title= (title ? title : "webchat") + (error ? " " + error.status : "")
-    link(rel="stylesheet" href="/stylesheets/style.css")
+
+    //-custom and bootsrap style sheets
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous")
+    link(rel="stylesheet" href="/stylesheets/style.css")
   body.text-center
+    //-title of page
     header
       h1.text-muted.mb-3 webchat
+
+    //-specific page contents
     main
       block content
     footer
+      //-footer credit text
       small.text-muted.pt-1
         br
         | on&nbsp
         a(href="https://github.com/douira/webchat") GitHub
         |  | by&nbsp
         a(href="https://twitter.com/douira100") douira
+
+    //-specific scripts
     block scripts
 
