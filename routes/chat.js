@@ -19,24 +19,29 @@ const messages = Array(40).fill(0).map(() => {
   };
 });*/
 
+//get request to main page
 router.get("/", function(req, res, next) {
+  //get session
   const sess = req.session;
   console.log("get chat", req.session);
+
+  //data passed to renderer
+  const data = {
+    messages: exp.db.messages
+  };
+
+  //render error if name was registered incorrectly
   if (sess.nameError) {
-    res.render("chat", {
-      title: "webchat error",
-      messages: exp.db.messages,
-      errorMessage: "user name error: " + sess.nameError
-    });
-  } else if (sess.userName) {
-    res.render("chat", {
-      title: "webchat @" + sess.userName,
-      messages: exp.db.messages,
-      userName: sess.userName
-    });
-  } else {
-    res.render("chat", {
-      messages: exp.db.messages
-    });
+    //error title and error message concerning user name
+    data.title = "webchat error";
+    data.errorMessage = "user name error: " + sess.nameError;
+  } //render with user name if set, otherwise default to page for new users
+  else if (sess.userName) {
+    //set title to include user name and set user name to display input box
+    data.title = "webchat @" + sess.userName;
+    data.userName = sess.userName;
   }
+
+  //render with template and modified data
+  res.render("chat", data);
 });
