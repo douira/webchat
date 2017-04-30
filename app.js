@@ -14,6 +14,7 @@ const chat = require("./routes/chat");
 const about = require("./routes/about");
 const pickName = require("./routes/pickName");
 const validateUsername = require("./routes/validateUsername");
+const registerName = require("./routes/registerName");
 
 const app = express();
 
@@ -26,7 +27,7 @@ app.use(session({
   store: new FileStore(),
   secret: "keyboard cat",
   resave: true,
-  saveUninitialized: true,
+  saveUninitialized: false,
   rolling: true,
   name: "webchat.sid",
   maxAge: 3600000 //1 hour
@@ -44,6 +45,7 @@ app.use("/", chat.router);
 app.use("/pick", pickName.router);
 app.use("/about", about.router);
 app.use("/validateusername", validateUsername.router);
+app.use("/registername", registerName.router);
 
 //database for use in route js' that need it
 const db = {
@@ -52,6 +54,7 @@ const db = {
 };
 validateUsername.db = db;
 chat.db = db;
+registerName.db = db;
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
