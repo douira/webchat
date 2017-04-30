@@ -27,10 +27,10 @@ function sendForm() {
   //send name to /registername to select it for the user's session
   $.post("/registername", {
     name: value
+  }, function() {
+    //more browser to main page after name has been set
+    window.location.href = "/";
   });
-
-  //more browser to main page
-  window.location.href = "/";
 }
 
 //handler for change of the name inout field
