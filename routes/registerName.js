@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const usernameValidator = require("../public/js/usernameValidator");
+const User = require("../User.js");
 
 const exp = module.exports = {
   router: router
@@ -30,7 +31,7 @@ router.post("/", function(req, res, next) {
         sess.nameError = false;
 
         //add name to database
-
+        exp.db.getSet("users").setEntry(userName, new User(userName));
       }
 
       //save the created session
