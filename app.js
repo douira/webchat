@@ -7,14 +7,16 @@ const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
-const session = require('express-session');
-const FileStore = require('session-file-store')(session);
+const session = require("express-session");
+const FileStore = require("session-file-store")(session);
 
 const chat = require("./routes/chat");
 const about = require("./routes/about");
 const pickName = require("./routes/pickName");
 const validateUsername = require("./routes/validateUsername");
 const registerName = require("./routes/registerName");
+
+const DatabaseManager = new require("./databaseManager");
 
 const app = express();
 
@@ -24,9 +26,11 @@ app.set("view engine", "pug");
 
 //sessions
 app.use(session({
-  store: new FileStore(),
-  secret: "keyboard cat",
-  resave: true,
+  store: new FileStore({
+    retries: 2
+  }),
+  secret: "GFg54gd/$gs$FSD409",
+  resave: false,
   saveUninitialized: false,
   rolling: true,
   name: "webchat.sid",
@@ -48,28 +52,29 @@ app.use("/validateusername", validateUsername.router);
 app.use("/registername", registerName.router);
 
 //database for use in route js' that need it
-const db = {
-  users: [],
-  messages: []
-};
-validateUsername.db = db;
-chat.db = db;
-registerName.db = db;
+const dbMan = new DatabaseManager();
+dbMan.createSet("users", "DictSet");
+dbMan.createSet("messages", "OrderedSet");
 
-// catch 404 and forward to error handler
+//attach database on pages that need it
+validateUsername.db = dbMan;
+chat.db = dbMan;
+registerName.db = dbMan;
+
+//catch 404 and forward to error handler
 app.use(function(req, res, next) {
   const err = new Error("Not Found");
   err.status = 404;
   next(err);
 });
 
-// error handler
+//error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+  //set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // render the error page
+  //render the error page
   res.status(err.status || 500);
   res.render("error");
 });

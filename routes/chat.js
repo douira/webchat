@@ -24,10 +24,11 @@ router.get("/", function(req, res, next) {
   //get session
   const sess = req.session;
   console.log("get chat", req.session);
+  console.log(exp.db.getSet("users").getArray());
 
   //data passed to renderer
   const data = {
-    messages: exp.db.messages
+    messages: exp.db.getSet("messages").getData()
   };
 
   //render error if name was registered incorrectly

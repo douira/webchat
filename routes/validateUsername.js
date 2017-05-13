@@ -8,5 +8,5 @@ const exp = module.exports = {
 
 //respond with validation response state name
 router.get("/:name", function(req, res, next) {
-  res.send(canHaveUserName(req.params.name, exp.db.users));
+  res.send(canHaveUserName(req.params.name, exp.db.getSet("users").getArray()));
 });
